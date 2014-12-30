@@ -1,0 +1,114 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <link href="~/Css/plcs.css" rel="stylesheet" />
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="~/Scripts/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="~/Scripts/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav id="navbar-top" class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand navbrand" href="#">
+                    <small>
+                        <span class="glyphicon glyphicon-th-large"> </span>
+                    </small>
+                    <span>Location Control Management System</span>
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul id="navrightul" class="nav navbar-nav navbar-right navsearch ">
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"><small>个人中心</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-volume-up"><small>消息</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-off"><small>登出</small></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="navpin" href="#">
+                            <span class="glyphicon glyphicon-pushpin"></span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right navsearch ">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="請輸入工號...">
+                        <span id="btnSearch" class="input-group-addon btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="sidebar" class="col-sm-3 col-md-2 sidebar-fixed">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Panelut title</div>
+                    <div>asdsadsa</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success">Dap acilisis in</li>
+                            <li class="list-group-item list-group-item-info">Cras  ibero</li>
+                            <li class="list-group-item list-group-item-warning">Port ctetur ac</li>
+                            <li class="list-group-item list-group-item-danger">V lum os</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                 @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/ie10-viewport-bug-workaround.js"></script>
+    <script src="~/Scripts/plcs.js"></script>
+</body>
+</html>

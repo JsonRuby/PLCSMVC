@@ -1,0 +1,109 @@
+﻿@using System.Web.Optimization
+@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">@*IE 兼容模式*@
+    <meta name="renderer" content="webkit"> @*国产浏览器高速模式*@
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Phone Location Control Management System">
+    <meta name="author" content="Wistron Chengdu KD0L10">
+    <link rel="icon" href="/favicon.ico">
+    <title>PLCMS</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/Scripts/html5shiv.min.js")
+        @Scripts.Render("~/Scripts/respond.js")
+    <![endif]-->
+    @Styles.Render("~/css/plcs.css")
+    @Scripts.Render("~/Scripts/jquery-2.1.1.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/plcs.js")
+
+</head>
+
+<body>
+
+    @*頂部導航*@
+    <nav class="navbar  navbar-fixed-top navbar-inverse " role="navigation">
+        <div class="container-fluid" >
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand plcstitle" href="#">
+                    Phone Location Control Management System
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right ">
+                    <li>
+                        <a href="#" class="plcsnavright">
+                            <span class="glyphicon glyphicon-user"><small>个人中心</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="plcsnavright">
+                            <span class="glyphicon glyphicon-volume-up"><small>消息</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="plcsnavright" role="button">
+                            <span class="glyphicon glyphicon-off"><small>登出</small></span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="input-group ">
+                        <input type="text" class="form-control plcssearch" placeholder="請輸入工號...">
+                        <span id="btnSearch" class="input-group-addon btn plcssearch">查詢</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    @*側邊欄導航*@
+    <div class="container-fluid" >
+        <div class="row">
+
+            <div class=" col-lg-2  " style="background-color:#6666CC">
+                <ul>
+                    <li class="sub">
+                        <a href="javascript:;">
+                            Nested Menu <div class="pull-right"><span class="caret"></span></div>
+                        </a>
+                        <ul class="templatemo-submenu">
+                            <li><a href="#">Aenean</a></li>
+                            <li><a href="#">Pellentesque</a></li>
+                            <li><a href="#">Congue</a></li>
+                            <li><a href="#">Interdum</a></li>
+                            <li><a href="#">Facilisi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class=" col-lg-10">
+                @RenderBody()
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,162 @@
+﻿@using System.Data
+@using System.Web.Optimization
+@using PLCS.Models
+
+@{
+    Layout = "~/Views/Theme/SideBar/SideBarIndex.cshtml";
+    ViewBag.Title = "Management";
+}
+
+<div class="panel panel-default ">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="cursor:pointer">
+        手機櫃管理<span class="caret"></span>
+
+    </div>
+    <div class="panel-body " style="display:none; ">
+       
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span id="managementAddRecord" class="glyphicon glyphicon-filter"></span>
+                </th>
+                @{
+                    var tableRowsProperties = ViewBag.TableRows[0].GetType().GetProperties();
+
+                }
+                @for (int i = 1; i < tableRowsProperties.Length; i++)
+                {
+                    <th>@tableRowsProperties[i].Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ClosetModel closet in ViewBag.TableRows)
+            {
+                <tr>
+                    <td><span class="glyphicon glyphicon-edit"></span></td>
+                    <td style="display:none">@closet.Id</td>
+                    <td>@closet.Region</td>
+                    <td>@closet.UserId</td>
+                    <td>@closet.Name</td>
+                    <td>@closet.Dept</td>
+                    <td>@closet.ClosetNo</td>
+                    <td>@closet.ClosetNorm</td>
+                    <td>@closet.ClosetRemark</td>
+                    <td>@closet.SignDate</td>
+                    <td>@closet.Remark</td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+
+
+
+
+    <nav>
+
+        <ul id="PageBarUl" class="pagination ">
+
+            @{
+                PageInfoModel pageInfo = ViewBag.PageInfo;
+                var pageIndex = pageInfo.PageIndex;
+                var pageSize = pageInfo.PageSize;
+                var pagePrevious = pageInfo.PageIndex - 1;
+                var pageNext = pageInfo.PageIndex + 1;
+                var preTenPageNumber = pageIndex <= 10 ? 0 : ((pageIndex / 10) - 1) * 10 + 1;
+                var nextTenPageNumber =
+                    pageIndex <= (ViewBag.MaxPageNumber / 10) * 10
+                        ? pageIndex % 10 == 0
+                            ? (pageIndex / 10) * 10 + 1
+                            : (pageIndex / 10) * 10 + 11
+                        : (ViewBag.MaxPageNumber / 10) * 10 + 1;
+
+                        <li id="refreshPagerBar">
+                            <a href="/Management/Management/0-@pageSize">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </a>
+                        </li>
+
+                if (pagePrevious == 0)
+                {
+                    <li class="disabled"><a href="/Management/Management/0-@pageSize">首頁</a></li>
+                    <li class="disabled"><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
+                    <li class="disabled"><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+                }
+                else
+                {
+                    <li><a href="/Management/Management/0-@pageSize">首頁</a></li>
+                    <li><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
+                    <li><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+                }
+
+
+                foreach (PageNumberModel pageNumberModel in ViewBag.listPageNumberModel)
+                {
+                    if (pageNumberModel.PageNumber == pageIndex)
+                    {
+                        <li class="active">
+                            <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
+                        </li>
+                    }
+
+                }
+
+
+
+
+                if (pageIndex * pageInfo.PageSize > pageInfo.Count)
+                {
+                    <li class="disabled">
+                        <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
+                    </li>
+                    <li>
+                        <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
+                    </li>
+                    <li>
+                        <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+                    </li>
+                }
+
+            }
+
+            <li>
+                <a href="#">
+                    共<strong>@ViewBag.MaxPageNumber</strong>頁
+                    <strong>@ViewBag.PageInfo.Count</strong>條記錄
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+
+</div>
+
+@Styles.Render("~/Css/bootstrap-datetimepicker.css")
+@Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datetimepicker.zh-TW.js")
+@Scripts.Render("~/scripts/management/management.js")
