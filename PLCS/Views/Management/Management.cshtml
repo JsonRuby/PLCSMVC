@@ -14,7 +14,7 @@
 
     </div>
     <div class="panel-body " style="display:none; ">
-       
+
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -146,9 +146,29 @@
             <li>
                 <a href="#">
                     共<strong>@ViewBag.MaxPageNumber</strong>頁
+                </a>
+            </li>
+            <li>
+                <a>
                     <strong>@ViewBag.PageInfo.Count</strong>條記錄
                 </a>
             </li>
+            <li>
+                <div class="btn-group dropup">
+                    <button type="button" class="btn btn-default dropdown-toggle" style="color: #337ab7;" data-toggle="dropdown">
+                        <strong> @pageSize<span class="caret"></span></strong>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/Management/management/1-5">5</a></li>
+                        <li><a href="/Management/management/1-10">10</a></li>
+                        <li><a href="/Management/management/1-20">20</a></li>
+                        <li><a href="/Management/management/1-50">50</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/Management/management/1-100">100</a></li>
+                    </ul>
+                </div>
+            </li>
+
 
         </ul>
     </nav>
@@ -157,6 +177,6 @@
 </div>
 
 @Styles.Render("~/Css/bootstrap-datetimepicker.css")
-@Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
-@Scripts.Render("~/Scripts/locales/bootstrap-datetimepicker.zh-TW.js")
+@Scripts.Render("~/Scripts/datetimepicker/bootstrap-datetimepicker.js")
+@Scripts.Render("~/Scripts/datetimepicker/locales/bootstrap-datetimepicker.zh-TW.js")
 @Scripts.Render("~/scripts/management/management.js")

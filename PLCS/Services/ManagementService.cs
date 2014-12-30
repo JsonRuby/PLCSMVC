@@ -18,15 +18,10 @@ namespace PLCS.Services
                 pageInfo.PageIndex,
                 pageInfo.PageSize);
 
-            var list2 = ListHelper.ConvertDataTableToList<ClosetModel>(table);
-
-             
-
-            return list2;
-
+            return ListHelper.ConvertDataTableToList<ClosetModel>(table);
 
         }
     }
-    
-    
+
+
 }
