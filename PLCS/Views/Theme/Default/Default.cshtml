@@ -1,4 +1,5 @@
-﻿@{
+﻿@using PLCS.Models
+@{
     Layout = null;
 }
 
@@ -15,7 +16,7 @@
 
     <!-- Custom styles for this master page -->
     <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Css/BootStrapIndex.css" rel="stylesheet" media="screen" />
+    <link href="~/Css/Default/Default.css" rel="stylesheet" />
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -34,6 +35,74 @@
 </head>
 
     <body>
-        @RenderBody()
-    </body>
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    @{ 
+                        var list = (List<SideBarModel>)ViewBag.SideBarList;
+                        var SideBarGroupNameList = (from row in list
+                            select new
+                            {
+                                row.SideBarGroupName,
+                                row.SideBarGroupIcon,
+                               SideBarItemActive= row.SideBarGroupActive?"active":""
+                            }).Distinct();
+
+                        foreach (var sideBarGroupNameList in SideBarGroupNameList)
+                        {
+                            <a class="blog-nav-item @sideBarGroupNameList.SideBarItemActive  ">
+                                <span class="@sideBarGroupNameList.SideBarGroupIcon"></span>
+                                @sideBarGroupNameList.SideBarGroupName
+                            </a>
+
+                            var itemNameList = from l in list
+                                .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
+                                .ToList()
+                                select new
+                                {
+                                    l.SideBarItemIcon,
+                                    l.SideBarItemName,
+                                    l.Controller,
+                                    l.Action,
+                                    l.Parameters
+                                };
+                            @*foreach (var itemName in itemNameList)
+                            {
+                                <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
+                                    <span class="@itemName.SideBarItemIcon"></span>
+                                    @itemName.SideBarItemName
+                                </a>
+                            }
+                            <a class="divider"></a>*@
+                        }
+                    }
+                </nav>
+            </div>
+        </div>
+        <div class="container"> 
+            <div class="row">
+
+                <div class="col-sm-10 blog-main">
+                    @RenderBody()
+                </div>
+            </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+               
+</body>
 </html>

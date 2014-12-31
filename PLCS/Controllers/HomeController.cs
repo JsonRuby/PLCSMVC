@@ -11,6 +11,8 @@ namespace PLCS.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
+            ViewBag.SideBarList = Services.SideBarList.GetSideBarList("");
             return View("/Views/Home/Welcome.cshtml");
         }
  

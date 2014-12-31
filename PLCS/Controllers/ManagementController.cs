@@ -79,6 +79,9 @@ namespace PLCS.Controllers
             ViewBag.listPageNumberModel = listPageNumberModel;
             ViewBag.TableRows = ManagementService.GetData(pageInfo);
 
+
+            ViewBag.SideBarList = SideBarList.GetSideBarList("");
+
             return View("Management");
         }
     }

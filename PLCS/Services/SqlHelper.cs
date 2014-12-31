@@ -155,5 +155,17 @@ namespace PLCS
                 }
             }
         }
+
+        public static string AggregateConditionsToWheresql(Dictionary<string, object> conditions = null)
+        {
+            string whereSql = "";
+            if (conditions != null && conditions.Count > 0)
+            {
+                whereSql = conditions.Aggregate(whereSql,
+                    (current, condition) =>
+                        current + (" and " + condition.Key + "=@" + condition.Key));
+            }
+            return whereSql;
+        }
     }
 }
