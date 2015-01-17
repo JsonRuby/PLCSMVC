@@ -8,9 +8,9 @@ namespace PLCS.Models
 {
     public class PageInfoModel
     {
-        public PageInfoModel(string tableName)
+        public PageInfoModel(int count)
         {
-            Count = CommonHelper.GetTableCount(tableName);
+            Count = count;
         }
 
         public int Count { get; private set; }
@@ -33,7 +33,7 @@ namespace PLCS.Models
         public int PageSize
         {
             get { return _pageSize; }
-            set { _pageSize = value > Count ? Count : value; }
+            set { _pageSize = value > 100 ? 100 : value; }
         }
 
         //public int NewPageSize { get; set; }

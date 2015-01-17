@@ -8,7 +8,6 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 50px;
 }
 
 
@@ -25,9 +24,7 @@ body {
  * Top navigation
  * Hide default border to remove 1px line.
  */
-.navbar-fixed-top {
-    border: 0;
-}
+
 
 /*
  * Sidebar
@@ -46,7 +43,7 @@ body {
         display: block;
         padding: 0;
         overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */ 
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         border-right: 1px solid #eee;
     }
 }
@@ -120,6 +117,11 @@ body {
     2.nav-inverse
 
 */
+
+
+/*
+     -----------------------------------------下面是override bootstrap------------------------------------
+ */
 .dropdown-menu {
     min-width: 50px;
 }
@@ -141,23 +143,158 @@ body {
     margin: auto;
 }
 
- .glyphicon:hover { 
-     background-color:#337AB7
- }
-
- .panel-body {
-  padding: 0;
+.glyphicon-white {
+    color: #fff;
 }
+
+table .glyphicon:hover {
+    background-color: #337AB7;
+    cursor: pointer; 
+} 
+
+.panel-body {
+    padding: 0;
+}
+
+table .msg {
+    border: 1px solid #337AB7;
+}
+
+
+.jumbotron {
+    background-color: transparent;
+}
+
+
+.col-sm-2,.col-sm-1 {
+    position: fixed;
+    top: 40px;
+    bottom: 0;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 1px solid #eee;
+}
+
+.col-sm-10,.col-sm-11 {
+    top: 40px;
+}
+
+.navbar-form {
+    padding: 0;
+    margin-top: 2px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    border-top: none;
+    border-bottom: none;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/*不要影響其他form control*/
+.form-control-navsearch, .btn-default-navsearch {
+    background-color: transparent;
+    border-color: #ccc;
+    color: white;
+}
+
+.form-control-xs {
+    padding: 1px 0; 
+    font-size: 12px;
+    line-height: 1.5;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+
+h4 {
+    margin: 0;
+}
+
+.modal-lg {
+    width: 500px;
+}
+
+
+
+ 
+/*
+     -----------------------------------------上面是override bootstrap------------------------------------
+ */
 
  
 
- /*
-     -----------------------------------------------------------------------------------------------
- */
 
-input {
-    width: 88%;
+.pagedropupbtn {
+    color: #337ab7;
 }
+
+.blog-masthead {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+/* Nav links */
+.blog-nav-item {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    padding-left: 0;
+    font-weight: 500;
+    color: #f0efef;
+}
+
+    .blog-nav-item:hover,
+    .blog-nav-item:focus {
+        color: #fff;
+        text-decoration: none;
+    }
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+    color: #fff;
+}
+
+    .blog-nav .active:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -5px;
+        vertical-align: middle;
+        content: " ";
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid;
+        border-left: 5px solid transparent;
+    }
 
 
 
@@ -167,4 +304,4 @@ input {
 /*
 
 */
- 
+

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        
+        /*revise postion*/
+         #importForm .row {
+             margin-right: 0;
+             margin-left: 0;
+         }
+
+        #importForm .col-xs-4 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <form id="importForm" action="/management/UploadExcel" method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadfie" />
+        <hr />
+        <div class="row">
+            <div class="col-xs-4" style="margin:0">
+                <button class="btn btn-primary" type="submit">上傳</button>
+            </div>
+            <div class="col-xs-8">
+                <div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 12%;">
+                    <iframe class="embed-responsive-item" src="/Iframe/MUploadResultCount.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+    <ul class="list-group">
+        <li id="step1" class="list-group-item list-group-item-success">
+            1.上傳
+            <span class="glyphicon glyphicon-ok pull-right"></span>
+        </li>
+        <li id="step2" class="list-group-item list-group-item-success ">
+            2.驗證
+            <span class="glyphicon glyphicon-ok pull-right"></span>
+        </li>
+        <li id="step3" class="list-group-item list-group-item-success">
+            3.完成
+            <span class="glyphicon glyphicon-ok pull-right"></span>
+        </li>
+    </ul>
+</body>
+</html>

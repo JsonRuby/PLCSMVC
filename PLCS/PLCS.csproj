@@ -41,6 +41,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\resource\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>bin\resource\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -82,12 +89,17 @@
     <Content Include="Css\BootStrapIndex.css" />
     <Content Include="Css\Default\Default.css" />
     <Content Include="Css\plcs.css" />
+    <Content Include="Css\signin\signin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Iframe\MUploadStep4.html" />
+    <Content Include="Iframe\MUploadResultCount.html" />
+    <Content Include="Iframe\MUploadStep3.html" />
+    <Content Include="Iframe\MUploadStep2.html" />
     <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\common\bootstrap.js" />
     <Content Include="Css\bootstrap.css.map" />
@@ -140,7 +152,7 @@
     <Content Include="Scripts\datetimepicker\locales\bootstrap-datetimepicker.uk.js" />
     <Content Include="Scripts\datetimepicker\locales\bootstrap-datetimepicker.zh-CN.js" />
     <Content Include="Scripts\datetimepicker\locales\bootstrap-datetimepicker.zh-TW.js" />
-    <Content Include="Scripts\management\management.js" />
+    <Content Include="Scripts\JsHelper.js" />
     <Content Include="Scripts\common\html5shiv.min.js" />
     <Content Include="Scripts\common\ie-emulation-modes-warning.js" />
     <Content Include="Scripts\common\ie10-viewport-bug-workaround.js" />
@@ -148,9 +160,11 @@
     <Content Include="Scripts\common\jquery-2.1.1.min.js" />
     <Content Include="Scripts\common\jquery.dataTables.min.js" />
     <Content Include="Scripts\common\npm.js" />
+    <Content Include="Scripts\management\tablemanagement.js" />
     <Content Include="Scripts\plcs.js" />
     <Content Include="Scripts\common\respond.js" />
-    <Content Include="Scripts\common\stickUp.min.js" />
+    <Content Include="Scripts\signin\signin.js" />
+    <Content Include="Iframe\MUploadStep1.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\common\jquery-2.1.1.min.map" />
   </ItemGroup>
@@ -162,17 +176,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClosetModel.cs" />
+    <Compile Include="Models\ActiveFilterDataModel.cs" />
+    <Compile Include="Models\AuthRegionAndDeptModel.cs" />
+    <Compile Include="Models\ConvertTypeEum.cs" />
+    <Compile Include="Models\CookiesEnum.cs" />
+    <Compile Include="Models\FilterDataModel.cs" />
+    <Compile Include="Models\UploadClassModel.cs" />
+    <Compile Include="Models\UserInfoModel.cs" />
+    <Compile Include="Models\ManagementTableModel.cs" />
     <Compile Include="Models\IntAlternateEum.cs" />
     <Compile Include="Models\PageNumberModel.cs" />
     <Compile Include="Models\ThemeModel.cs" />
+    <Compile Include="Models\EmpInfoModel.cs" />
     <Compile Include="Services\CommonHelper.cs" />
     <Compile Include="Services\ListHelper.cs" />
     <Compile Include="Models\PageInfoModel.cs" />
     <Compile Include="Models\SideBarModel.cs" />
-    <Compile Include="Services\ManagementHandler.ashx.cs">
-      <DependentUpon>ManagementHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Services\SqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ManagementService.cs" />
@@ -188,8 +207,9 @@
     <Content Include="Views\DashBoard\DashBoard.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Theme\SideBar\SideBarIndex.cshtml" />
-    <Content Include="Services\ManagementHandler.ashx" />
+    <Content Include="Views\Theme\Default\Default_old.cshtml" />
     <Content Include="Views\Theme\Default\Default.cshtml" />
+    <Content Include="Views\UploadModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -199,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SideBar\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

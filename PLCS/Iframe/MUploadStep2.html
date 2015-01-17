@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../Scripts/common/jquery-2.1.1.min.js"></script>
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#importForm :submit").click(function () {
+                $(this).text("驗證中,請稍後...");
+            });
+        });
+        UploadExcelValidate = function () {
+            $("#importForm :submit").click();
+        } 
+    </script>
+</head>
+<body onload="UploadExcelValidate();" >
+    <form id="importForm" action="/management/UploadExcelValidate" method="post" >
+        <input type="file" name="uploadfie" />
+        <hr />
+        <button class="btn btn-primary" type="submit">上傳完成</button>
+    </form>
+    <br />
+    <ul class="list-group">
+        <li id="step1" class="list-group-item">
+            1.上傳
+            <span class="glyphicon glyphicon-ok pull-right"></span>
+        </li>
+        <li id="step2" class="list-group-item">2.驗證</li>
+        <li id="step3" class="list-group-item">3.完成</li>
+    </ul>
+</body>
+</html>

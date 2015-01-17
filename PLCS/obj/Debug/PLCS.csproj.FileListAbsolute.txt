@@ -32,6 +32,7 @@ D:\GitHub\JsDataTableDemo\PLCS\obj\Debug\PLCS.csprojResolveAssemblyReference.cac
 D:\GitHub\PLCSMVC\PLCS\bin\PLCS.dll.config
 D:\GitHub\PLCSMVC\PLCS\bin\PLCS.dll
 D:\GitHub\PLCSMVC\PLCS\bin\PLCS.pdb
+D:\GitHub\PLCSMVC\PLCS\bin\Newtonsoft.Json.dll
 D:\GitHub\PLCSMVC\PLCS\bin\System.Web.Mvc.dll
 D:\GitHub\PLCSMVC\PLCS\bin\System.Web.Optimization.dll
 D:\GitHub\PLCSMVC\PLCS\bin\System.Web.Razor.dll
@@ -39,6 +40,6 @@ D:\GitHub\PLCSMVC\PLCS\bin\System.Web.WebPages.Deployment.dll
 D:\GitHub\PLCSMVC\PLCS\bin\System.Web.WebPages.dll
 D:\GitHub\PLCSMVC\PLCS\bin\System.Web.WebPages.Razor.dll
 D:\GitHub\PLCSMVC\PLCS\bin\WebGrease.dll
-D:\GitHub\PLCSMVC\PLCS\bin\Newtonsoft.Json.dll
 D:\GitHub\PLCSMVC\PLCS\obj\Debug\PLCS.dll
 D:\GitHub\PLCSMVC\PLCS\obj\Debug\PLCS.pdb
+D:\GitHub\PLCSMVC\PLCS\bin\NPOI.dll

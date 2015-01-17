@@ -1,22 +1,23 @@
-﻿/// <reference path="bootstrap.js" />
-/// <reference path="jquery-2.1.1.js" /> 
-
+﻿/// <reference path="~/Scripts/common/jquery-2.1.1.js" />
+/// <reference path="../common/bootstrap.js" />  
 $(function () {
-    $(function () {
-        $("a").click(function () {
+
+    $("a").click(function (event) {
+        if ($(this).attr("href") != undefined) {
             var hrefvalue = $(this).attr("href");
             if (hrefvalue.indexOf("/") >= 0) {
                 $('#processModal').modal();
+                if ($(this).parent().parent().hasClass("pagination") || $(this).parent().parent().hasClass("dropdown-menu")) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    $("#searchForm").attr("action", "/management/management/" + hrefvalue.split('/')[hrefvalue.split('/').length - 1]);
+                    $("#btnSearch").click();
+                }
             }
-        });
-
+        }
     });
 
-    //panel heading 點擊之後show出panel boby
-    $(".panel-heading").click(function () {
-        $(this).nextAll(".panel-body").toggle();
-    });
 
-    
- 
+
+
 });

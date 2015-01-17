@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../Scripts/common/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        getCount =function () {
+            $("#importForm :submit").click();
+        } 
+    </script>
+</head>
+<body onload="getCount();">
+    <form id="importForm" action="/management/UploadResultCount" method="post" enctype="multipart/form-data">
+        <button class="btn btn-primary" type="submit" hidden>取上傳筆數</button>
+    </form>
+</body>
+</html>

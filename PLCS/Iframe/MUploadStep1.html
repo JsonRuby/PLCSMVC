@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../Scripts/common/jquery-2.1.1.min.js"></script>
+    <link href="../Css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#importForm :submit").click(function () {
+                $(this).text("上傳中,請稍後...");
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="importForm" action="/management/UploadExcel" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="uploadfie" />
+        <hr />
+        <button class="btn btn-primary" type="submit">上傳</button>
+    </form>
+    <br />
+    <ul class="list-group">
+        <li class="list-group-item">1.上傳</li>
+        <li class="list-group-item">2.驗證</li>
+        <li class="list-group-item">3.完成</li>
+    </ul>
+</body>
+</html>

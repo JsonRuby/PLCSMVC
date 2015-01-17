@@ -10,11 +10,11 @@
     <meta name="author" content="d1105z320">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Phone Location Control Management System</title>
 
     <!-- Custom styles for this master page -->
     <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Css/BootStrapIndex.css" rel="stylesheet" media="screen" /> 
+    <link href="~/Css/BootStrapIndex.css" rel="stylesheet" media="screen" />
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -23,7 +23,7 @@
     <script src="~/Scripts/common/bootstrap.min.js"></script>
     <script src="~/Scripts/common/ie10-viewport-bug-workaround.js"></script>
     <script src="~/Scripts/BootStrapIndex.js"></script>
-    <script src="~/Scripts/IndexLoad.js"></script>
+    <script src="~/Scripts/JsHelper.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="~/Scripts/common/html5shiv.min.js"></script>
@@ -33,64 +33,128 @@
 </head>
 
 <body>
- 
-    
-    <nav   class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+
+    @*<nav   class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand navbrand" href="#">
+                        <small>
+                            <span class="glyphicon glyphicon-th-large"> </span>
+                        </small>
+                        <span>Location Control Management System</span>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul id="navrightul" class="nav navbar-nav navbar-right navsearch ">
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"><small>个人中心</small></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-volume-up"><small>消息</small></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-off"><small>登出</small></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a id="navpin" href="#">
+                                <span class="glyphicon glyphicon-pushpin"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right navsearch ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" placeholder="請輸入工號...">
+                            <span id="btnSearch" class="input-group-addon btn">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </nav>*@
+    @*---------------------------------------------------------------------------------------------------*@
+    <div class="blog-masthead">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand navbrand" href="#">
-                    <small>
-                        <span class="glyphicon glyphicon-th-large"> </span>
-                    </small>
-                    <span>Location Control Management System</span>
+            @*<nav class="blog-nav">
+                    @{
+                        var navList = (List<SideBarModel>)ViewBag.SideBarList;
+                        var SideBarGroupNameListTmp = (from row in navList
+                                                       select new
+                                                       {
+                                                           row.SideBarGroupName,
+                                                           row.SideBarGroupIcon,
+                                                           SideBarItemActive = row.SideBarGroupActive ? "active" : ""
+                                                       }).Distinct();
+
+                        foreach (var sideBarGroupNameList in SideBarGroupNameListTmp)
+                        {
+                            <a class="blog-nav-item @sideBarGroupNameList.SideBarItemActive  ">
+                                <span class="@sideBarGroupNameList.SideBarGroupIcon"></span>
+                                @sideBarGroupNameList.SideBarGroupName
+                            </a>
+
+                            //var itemNameList = from l in list
+                            //    .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
+                            //    .ToList()
+                            //                   select new
+                            //                   {
+                            //                       l.SideBarItemIcon,
+                            //                       l.SideBarItemName,
+                            //                       l.Controller,
+                            //                       l.Action,
+                            //                       l.Parameters
+                            //                   };
+                            @*foreach (var itemName in itemNameList)
+                                {
+                                    <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
+                                        <span class="@itemName.SideBarItemIcon"></span>
+                                        @itemName.SideBarItemName
+                                    </a>
+                                }
+                                <a class="divider"></a>
+                        }
+                    }
+                </nav>*@
+            <nav class="blog-nav" >
+                <a href="/home" class="blog-nav-item ">
+                    <h4><strong>Phone Location Control Management System</strong></h4>
                 </a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul id="navrightul" class="nav navbar-nav navbar-right navsearch ">
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-user"><small>个人中心</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-volume-up"><small>消息</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-off"><small>登出</small></span>
-                        </a>
-                    </li>
 
-                    <li>
-                        <a id="navpin" href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span>
-                        </a>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right navsearch ">
-                    <div class="input-group ">
-                        <input type="text" class="form-control" placeholder="請輸入工號...">
-                        <span id="btnSearch" class="input-group-addon btn">
-                            <span class="glyphicon glyphicon-search"></span>
+                <span class="glyphicon glyphicon-white glyphicon-map-marker">chengdu</span>
+                <form  class="navbar-form navbar-right">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-navsearch" placeholder="請輸入工號...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-default-navsearch" type="button">Go!</button>
                         </span>
-                    </div>
+                    </div><!-- /input-group -->
                 </form>
-
-
-            </div>
+                <a class="blog-nav-item navbar-right"> <span>@DateTime.Now.ToString()</span></a>
+                <a class="blog-nav-item navbar-right"> <span>當前用戶:朱正梁</span></a>
+            </nav>
         </div>
-    </nav>
+    </div>
+    @*---------------------------------------------------------------------------------------------------*@
+
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
+            <div class="col-sm-1">
                 <div class="list-group">
                     @{
                         var list = (List<SideBarModel>)ViewBag.SideBarList;
@@ -98,68 +162,74 @@
                                                     select new
                                                     {
                                                         row.SideBarGroupName,
-                                                        row.SideBarGroupIcon
+                                                        row.SideBarGroupIcon,
+                                                        SideBarItemActive = row.SideBarGroupActive ? "active" : "disabled"
                                                     }).Distinct();
 
                         foreach (var sideBarGroupNameList in SideBarGroupNameList)
                         {
-                            <a class="list-group-item  disabled">
+
+                            <a class="list-group-item  @sideBarGroupNameList.SideBarItemActive">
                                 <span class="@sideBarGroupNameList.SideBarGroupIcon"></span>
+
+
                                 @sideBarGroupNameList.SideBarGroupName
                             </a>
 
                             var itemNameList = from l in list
-                            .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
-                            .ToList()
+                                .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
+                                .ToList()
                                                select new
                                                {
                                                    l.SideBarItemIcon,
                                                    l.SideBarItemName,
                                                    l.Controller,
                                                    l.Action,
-                                                   l.Parameters
+                                                   l.Parameters,
+                                                   l.SideBarItemActive
                                                };
                             foreach (var itemName in itemNameList)
                             {
                                 <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
                                     <span class="@itemName.SideBarItemIcon"></span>
                                     @itemName.SideBarItemName
+                                    @if (itemName.SideBarItemActive)
+                                    {
+                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                    }
                                 </a>
                             }
                             <a class="divider"></a>
                         }
-
-
-}
-
+                    }
 
                 </div>
 
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 ">
+            <div class="col-sm-11 col-sm-offset-1  ">
                 @RenderBody()
             </div>
         </div>
     </div>
 
-   
+
     <div id="processModal" class="modal">
         <div class="modal-dialog  modal-sm">
             <div class="progress">
-                <div class="progress-bar progress-bar-striped active" 
-                     role="progressbar" 
-                     aria-valuenow="45" 
-                     aria-valuemin="0" 
-                     aria-valuemax="100" 
+                <div class="progress-bar progress-bar-striped active"
+                     role="progressbar"
+                     aria-valuenow="45"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
                      style="width: 100%">
                     <strong>處理中.請稍後...</strong>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
- 
-    
+
+
+
 
 </body>
 </html>

@@ -6,7 +6,7 @@
     ViewBag.Title = "Management";
 }
 
-<div class="panel panel-default ">
+@*<div class="panel panel-default ">
     <!-- Default panel contents -->
     <div class="panel-heading" style="cursor:pointer">
         手機櫃管理<span class="caret"></span>
@@ -14,168 +14,359 @@
     </div>
     <div class="panel-body " style="display:none; ">
 
-    </div>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <span id="managementAddRecord" class="glyphicon glyphicon-filter"></span>
-                </th>
-                @{
-                    var tableRowsProperties = ViewBag.TableRows[0].GetType().GetProperties();
-
-                }
-                @for (int i = 1; i < tableRowsProperties.Length; i++)
-                {
-                    <th>@tableRowsProperties[i].Name</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (ClosetModel closet in ViewBag.TableRows)
-            {
-                <tr>
-                    <td><span class="glyphicon glyphicon-edit"></span></td>
-                    <td style="display:none">@closet.Id</td>
-                    <td>@closet.Region</td>
-                    <td>@closet.UserId</td>
-                    <td>@closet.Name</td>
-                    <td>@closet.Dept</td>
-                    <td>@closet.ClosetNo</td>
-                    <td>@closet.ClosetNorm</td>
-                    <td>@closet.ClosetRemark</td>
-                    <td>@closet.SignDate</td>
-                    <td>@closet.Remark</td>
-                </tr>
-            }
-
-        </tbody>
-
-
-    </table>
-
-
-
-
-    <nav>
-
-        <ul id="PageBarUl" class="pagination ">
-
+    </div>*@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <span id="showSearch" class="glyphicon glyphicon-filter"></span>
+            </th>
             @{
-                PageInfoModel pageInfo = ViewBag.PageInfo;
-                var pageIndex = pageInfo.PageIndex;
-                var pageSize = pageInfo.PageSize;
-                var pagePrevious = pageInfo.PageIndex - 1;
-                var pageNext = pageInfo.PageIndex + 1;
-                var preTenPageNumber = pageIndex <= 10 ? 0 : ((pageIndex / 10) - 1) * 10 + 1;
-                var nextTenPageNumber =
-                    pageIndex <= (ViewBag.MaxPageNumber / 10) * 10
-                        ? pageIndex % 10 == 0
-                            ? (pageIndex / 10) * 10 + 1
-                            : (pageIndex / 10) * 10 + 11
-                        : (ViewBag.MaxPageNumber / 10) * 10 + 1;
+                //var tableRowsProperties = ViewBag.TableRows[0].GetType().GetProperties();
 
-                        <li id="refreshPagerBar">
-                            <a href="/Management/Management/0-@pageSize">
-                                <span class="glyphicon glyphicon-refresh"></span>
-                            </a>
-                        </li>
+                var tableHead = (DataTable)ViewBag.TableHead;
+            }
+            @for (int i = 0; i < tableHead.Columns.Count; i++)
+            {
+                <th>@tableHead.Columns[i].ColumnName</th>
+            }
+        </tr>
+        @*filter*@
+        @{
+            FilterDataModel filterdatamodel = ViewBag.FilterData;
+            ActiveFilterDataModel activefilterdatamodel = ViewBag.ActiveFilterData;
+            var isHidden = "";
+            if (ListHelper.ClassIsEmptyOrNull(activefilterdatamodel))
+            {
+                isHidden = "hidden";
+            }
+        }
+        <tr id="filtertr" @isHidden>
 
-                if (pagePrevious == 0)
+            <th>
+                <span id="btnSearch" class="glyphicon glyphicon-search"></span>
+            </th>
+            <th>
+                <select id="Region" class="form-control-xs">
+                    <option>@activefilterdatamodel.Region</option>
+                    @{
+                        foreach (var list in filterdatamodel.Region)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <input id="UserId" type="text" placeholder="工號" class="form-control-xs" value="@activefilterdatamodel.UserId" />
+            </th>
+            <th>
+                <input id="Name" type="text" placeholder="姓名" class="form-control-xs" value="@activefilterdatamodel.Name" />
+            </th>
+            <th>
+                <select id="Dept" class="form-control-xs">
+                    <option>@activefilterdatamodel.Dept</option>
+                    @{
+                        foreach (var list in filterdatamodel.Dept)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <select id="OrgDept" class="form-control-xs">
+                    <option>@activefilterdatamodel.OrgDept</option>
+                    @{
+                        foreach (var list in filterdatamodel.OrgDept)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <input id="ClosetNo" type="text" placeholder="序號" class="form-control-xs" value="@activefilterdatamodel.ClosetNo" />
+            </th>
+            <th>
+                <select id="ClosetNorm" class="form-control-xs">
+                    <option>@activefilterdatamodel.ClosetNorm</option>
+                    @{
+                        foreach (var list in filterdatamodel.ClosetNorm)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <select id="ClosetRemark" class="form-control-xs">
+                    <option>@activefilterdatamodel.ClosetRemark</option>
+                    @{
+                        foreach (var list in filterdatamodel.ClosetRemark)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <input id="SignDate" type="text" placeholder="日期" class="form-control-xs date" value="@activefilterdatamodel.SignDate" />
+            </th>
+            <th>
+                <select id="Remark" class="form-control-xs">
+                    <option>@activefilterdatamodel.Remark</option>
+                    @{
+                        foreach (var list in filterdatamodel.Remark)
+                        {
+                            <option>@list</option>
+
+                        }
+                    }
+                </select>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ManagementTableModel closet in ViewBag.TableRows)
+        {
+            <tr>
+                <td><span class="glyphicon glyphicon-edit" title="編輯"></span></td>
+                <td hidden>@closet.Id.ToString()</td>
+                <td>@closet.Region</td>
+                <td>@closet.UserId</td>
+                <td>@closet.Name</td>
+                <td>@closet.Dept</td>
+                <td>@closet.OrgDept</td>
+                <td>@closet.ClosetNo</td>
+                <td>@closet.ClosetNorm</td>
+                <td>@closet.ClosetRemark</td>
+                @if (closet.SignDate != null)
                 {
-                    <li class="disabled"><a href="/Management/Management/0-@pageSize">首頁</a></li>
-                    <li class="disabled"><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
-                    <li class="disabled"><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+                    <td>@DateTime.Parse(closet.SignDate.ToString()).ToString("yyyy/MM/dd")</td>
                 }
                 else
                 {
-                    <li><a href="/Management/Management/0-@pageSize">首頁</a></li>
-                    <li><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
-                    <li><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+                    <td></td>
                 }
 
+                <td>@closet.Remark</td>
+            </tr>
+        }
 
-                foreach (PageNumberModel pageNumberModel in ViewBag.listPageNumberModel)
-                {
-                    if (pageNumberModel.PageNumber == pageIndex)
-                    {
-                        <li class="active">
-                            <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
-                        </li>
-                    }
+    </tbody>
 
-                }
+
+</table>
 
 
 
 
-                if (pageIndex * pageInfo.PageSize > pageInfo.Count)
-                {
-                    <li class="disabled">
-                        <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
+<nav>
+    <ul id="PageBarUl" class="pagination ">
+
+        @{
+            PageInfoModel pageInfo = ViewBag.PageInfo;
+            var pageIndex = pageInfo.PageIndex;
+            var pageSize = pageInfo.PageSize;
+            var pagePrevious = pageInfo.PageIndex - 1;
+            var pageNext = pageInfo.PageIndex + 1;
+            var preTenPageNumber = pageIndex <= 10 ? 0 : ((pageIndex / 10) - 1) * 10 + 1;
+            var nextTenPageNumber =
+                pageIndex <= (ViewBag.MaxPageNumber / 10) * 10
+                    ? pageIndex % 10 == 0
+                        ? (pageIndex / 10) * 10 + 1
+                        : (pageIndex / 10) * 10 + 11
+                    : (ViewBag.MaxPageNumber / 10) * 10 + 1;
+
+                    <li id="refreshPagerBar">
+                        <a href="/Management/Management/0-@pageSize">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </a>
                     </li>
-                    <li class="disabled">
-                        <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
-                    </li>
-                    <li class="disabled">
-                        <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+
+            if (pagePrevious == 0)
+            {
+                <li class="disabled"><a href="/Management/Management/0-@pageSize">首頁</a></li>
+                <li class="disabled"><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
+                <li class="disabled"><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+            }
+            else
+            {
+                <li><a href="/Management/Management/0-@pageSize">首頁</a></li>
+                <li><a href="/Management/Management/@preTenPageNumber-@pageSize">前10頁</a></li>
+                <li><a href="/Management/Management/@pagePrevious-@pageSize">前1頁</a></li>
+            }
+
+
+            foreach (PageNumberModel pageNumberModel in ViewBag.listPageNumberModel)
+            {
+                if (pageNumberModel.PageNumber == pageIndex)
+                {
+                    <li class="active">
+                        <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
                     </li>
                 }
                 else
                 {
                     <li>
-                        <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
-                    </li>
-                    <li>
-                        <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
-                    </li>
-                    <li>
-                        <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+                        <a href="/Management/Management/@pageNumberModel.PageNumber-@pageSize">@pageNumberModel.PageNumber</a>
                     </li>
                 }
 
             }
 
-            <li>
-                <a href="#">
-                    共<strong>@ViewBag.MaxPageNumber</strong>頁
-                </a>
-            </li>
-            <li>
-                <a>
-                    <strong>@ViewBag.PageInfo.Count</strong>條記錄
-                </a>
-            </li>
-            <li>
-                <div class="btn-group dropup">
-                    <button type="button" class="btn btn-default dropdown-toggle" style="color: #337ab7;" data-toggle="dropdown">
-                        <strong> @pageSize<span class="caret"></span></strong>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/Management/management/1-5">5</a></li>
-                        <li><a href="/Management/management/1-10">10</a></li>
-                        <li><a href="/Management/management/1-20">20</a></li>
-                        <li><a href="/Management/management/1-50">50</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/Management/management/1-100">100</a></li>
-                    </ul>
+
+
+
+            if (pageIndex * pageInfo.PageSize > pageInfo.Count)
+            {
+                <li class="disabled">
+                    <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
+                </li>
+                <li class="disabled">
+                    <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
+                </li>
+                <li class="disabled">
+                    <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="/Management/Management/@pageNext-@pageSize">後1頁</a>
+                </li>
+                <li>
+                    <a href="/Management/Management/@nextTenPageNumber-@pageSize">後10頁</a>
+                </li>
+                <li>
+                    <a href="/Management/Management/@ViewBag.MaxPageNumber-@pageSize">末頁</a>
+                </li>
+            }
+
+        }
+
+        <li>
+            <a>
+                共<strong>@ViewBag.MaxPageNumber</strong>頁
+            </a>
+        </li>
+        <li>
+            <a>
+                <strong>@ViewBag.PageInfo.Count</strong>條記錄
+            </a>
+        </li>
+        <li>
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-default dropdown-toggle pagedropupbtn" data-toggle="dropdown">
+                    <strong>@pageSize<span class="caret"></span></strong>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/Management/management/1-5">5</a></li>
+                    <li><a href="/Management/management/1-10">10</a></li>
+                    <li><a href="/Management/management/1-20">20</a></li>
+                    <li><a href="/Management/management/1-50">50</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Management/management/1-100">100</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a href="#myUploadModal" data-toggle="modal"><span class="glyphicon glyphicon-cloud-upload"></span></a>
+        </li>
+        <li><a href="#myDownloadModal" data-toggle="modal"><span class="glyphicon glyphicon-cloud-download"></span></a></li>
+
+
+    </ul>
+</nav>
+
+
+<form id="searchForm" action="/management/management/1-10" method="post" hidden>
+    <input type="hidden" name="Region" />
+    <input type="hidden" name="UserId" />
+    <input type="hidden" name="Name" />
+    <input type="hidden" name="Dept" />
+    <input type="hidden" name="OrgDept" />
+    <input type="hidden" name="ClosetNo" />
+    <input type="hidden" name="ClosetNorm" />
+    <input type="hidden" name="ClosetRemark" />
+    <input type="hidden" name="SignDate" />
+    <input type="hidden" name="Remark" />
+
+    <input type="submit" />
+</form>
+
+
+<form id="exportForm" action="/management/GenerateExcel" method="post" hidden>
+    <input type="hidden" name="pageIndex" />
+    <input type="hidden" name="pageSize" />
+    <input type="hidden" name="pageCount" />
+    <input type="hidden" name="isFirstTime" />
+    <input type="hidden" name="isLastTime" />
+    <input type="submit" />
+</form>
+
+
+<!-- Upload Modal -->
+<div class="modal fade" id="myUploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg  ">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <div class="row">
+                    <div class="col-md-3"><h4 class="modal-title" id="myModalLabel">上傳資料</h4></div>
+                    <div class="col-md-2"><a class="btn btn-default btn-sm" href="#">下載模板</a></div>
+                    <div class="col-md-7"></div>
                 </div>
-            </li>
+            </div>
+            <div class="modal-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="managementIframe" name="managementIframe" 
+                            class="embed-responsive-item" src="/Iframe/MUploadStep1.html"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="myUploadExcel" class="btn btn-default">重新上傳</button>
+                <button id="myUploadModalCancel" type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
-        </ul>
-    </nav>
-
-
+<!-- Download Modal -->
+<div class="modal fade" id="myDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myDownloadModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">下載資料</h4>
+            </div>
+            <div class="modal-body">
+                <h5>你將要下載的資料即爲當前頁面顯示的內容</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="myDownloadExcel" class="btn btn-primary">下載</button>
+                <button id="myDownloadModalCancel" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @Styles.Render("~/Css/bootstrap-datetimepicker.css")
 @Scripts.Render("~/Scripts/datetimepicker/bootstrap-datetimepicker.js")
 @Scripts.Render("~/Scripts/datetimepicker/locales/bootstrap-datetimepicker.zh-TW.js")
-@Scripts.Render("~/scripts/management/management.js")
+@Scripts.Render("~/Scripts/common/jquery.pin.js")
+@Scripts.Render("~/scripts/management/tablemanagement.js")
+

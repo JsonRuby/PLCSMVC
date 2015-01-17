@@ -1,8 +1,6 @@
 ﻿@using PLCS.Models
-@{
-    Layout = null;
-}
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,11 +10,11 @@
     <meta name="author" content="d1105z320">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Welcome</title>
 
     <!-- Custom styles for this master page -->
     <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Css/Default/Default.css" rel="stylesheet" />
+    <link href="~/Css/BootStrapIndex.css" rel="stylesheet" media="screen" />
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -24,8 +22,7 @@
     <script src="~/Scripts/common/jquery-2.1.1.min.js"></script>
     <script src="~/Scripts/common/bootstrap.min.js"></script>
     <script src="~/Scripts/common/ie10-viewport-bug-workaround.js"></script>
-    <script src="~/Scripts/BootStrapIndex.js"></script>
-    <script src="~/Scripts/IndexLoad.js"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="~/Scripts/common/html5shiv.min.js"></script>
@@ -34,75 +31,85 @@
 
 </head>
 
-    <body>
-        <div class="blog-masthead">
-            <div class="container">
-                <nav class="blog-nav">
-                    @{ 
-                        var list = (List<SideBarModel>)ViewBag.SideBarList;
-                        var SideBarGroupNameList = (from row in list
-                            select new
-                            {
-                                row.SideBarGroupName,
-                                row.SideBarGroupIcon,
-                               SideBarItemActive= row.SideBarGroupActive?"active":""
-                            }).Distinct();
+<body>
 
-                        foreach (var sideBarGroupNameList in SideBarGroupNameList)
+    <div class="blog-masthead">
+        <div class="container-fluid">
+            @*<nav class="blog-nav">
+                    @{
+                        var navList = (List<SideBarModel>)ViewBag.SideBarList;
+                        var SideBarGroupNameListTmp = (from row in navList
+                                                       select new
+                                                       {
+                                                           row.SideBarGroupName,
+                                                           row.SideBarGroupIcon,
+                                                           SideBarItemActive = row.SideBarGroupActive ? "active" : ""
+                                                       }).Distinct();
+
+                        foreach (var sideBarGroupNameList in SideBarGroupNameListTmp)
                         {
                             <a class="blog-nav-item @sideBarGroupNameList.SideBarItemActive  ">
                                 <span class="@sideBarGroupNameList.SideBarGroupIcon"></span>
                                 @sideBarGroupNameList.SideBarGroupName
                             </a>
 
-                            var itemNameList = from l in list
-                                .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
-                                .ToList()
-                                select new
-                                {
-                                    l.SideBarItemIcon,
-                                    l.SideBarItemName,
-                                    l.Controller,
-                                    l.Action,
-                                    l.Parameters
-                                };
+                            //var itemNameList = from l in list
+                            //    .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
+                            //    .ToList()
+                            //                   select new
+                            //                   {
+                            //                       l.SideBarItemIcon,
+                            //                       l.SideBarItemName,
+                            //                       l.Controller,
+                            //                       l.Action,
+                            //                       l.Parameters
+                            //                   };
                             @*foreach (var itemName in itemNameList)
-                            {
-                                <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
-                                    <span class="@itemName.SideBarItemIcon"></span>
-                                    @itemName.SideBarItemName
-                                </a>
-                            }
-                            <a class="divider"></a>*@
+                                {
+                                    <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
+                                        <span class="@itemName.SideBarItemIcon"></span>
+                                        @itemName.SideBarItemName
+                                    </a>
+                                }
+                                <a class="divider"></a>
                         }
                     }
-                </nav>
-            </div>
+                </nav>*@
+            <nav class="blog-nav">
+                <a href="/home" class="blog-nav-item ">
+                    <h4><strong>Phone Location Control Management System</strong></h4>
+                </a>
+
+                <span class="glyphicon glyphicon-white glyphicon-map-marker">chengdu</span>
+            </nav>
         </div>
-        <div class="container"> 
-            <div class="row">
+    </div>
+    @*---------------------------------------------------------------------------------------------------*@
 
-                <div class="col-sm-10 blog-main">
-                    @RenderBody()
+    <div class="container-fluid">
+        
+                @RenderBody()
+        
+    </div>
+
+
+    <div id="processModal" class="modal">
+        <div class="modal-dialog  modal-sm">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active"
+                     role="progressbar"
+                     aria-valuenow="45"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="width: 100%">
+                    <strong>登錄中.請稍後...</strong>
                 </div>
-            </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 
 
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-               
 </body>
 </html>

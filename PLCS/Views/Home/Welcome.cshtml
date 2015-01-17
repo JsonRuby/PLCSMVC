@@ -1,12 +1,53 @@
-﻿@{
+﻿@using System.Web.Optimization
+@{
     ViewBag.Title = "Welcome";
+    Layout = "~/Views/Theme/Default/Default.cshtml";
+
 }
 
 
-
+<link href="~/Css/signin/signin.css" rel="stylesheet" />
 <!-- Jumbotron -->
 <div class="jumbotron">
-    <h1>Marketing stuff!</h1>
-    <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-    <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+    <h2 class="text-center">歡迎使用手機櫃管理系統!</h2>
+    <hr />
+    <form class="form-signin" action="/home/login" method="post" role="form">
+        @{
+            var loginName = string.IsNullOrEmpty(ViewBag.RememberMe) ? "" : ViewBag.LoginUserName;
+        }
+        <input type="text" id="LoginUserName" name="LoginUserName" class="form-control"
+               placeholder="用戶名" value="@loginName" required autofocus>
+        <input type="password" id="LoginPassword" name="LoginPassword" class="form-control" placeholder="密碼" required>
+
+        @{if (String.IsNullOrEmpty(ViewBag.RememberMe))
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="rememberMe" value="記住用戶名">記住用戶名
+                </label>
+            </div>
+            <input type="hidden" id="hiddenrememberMe" name="rememberMe" value="" />
+        }
+        else
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="rememberMe" checked="checked" value="記住用戶名">記住用戶名
+                </label>
+            </div>
+            <input type="hidden" id="hiddenrememberMe" name="rememberMe" value="checked" />
+        }
+        }
+
+        <button id="loginbtn" class="btn btn-lg btn-primary btn-block" type="submit">登錄</button>
+        @{if (!String.IsNullOrEmpty(ViewBag.Msg))
+        {
+            <div class="alert alert-danger" role="alert">@ViewBag.Msg</div>
+        }
+        }
+
+    </form>
+
 </div>
+
+@Scripts.Render("~/scripts/signin/signin.js")

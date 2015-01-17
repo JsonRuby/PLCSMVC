@@ -1,0 +1,108 @@
+﻿@using PLCS.Models
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="d1105z320">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Default</title>
+
+    <!-- Custom styles for this master page -->
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Css/Default/Default.css" rel="stylesheet" />
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/common/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/common/bootstrap.min.js"></script>
+    <script src="~/Scripts/common/ie10-viewport-bug-workaround.js"></script>
+    <script src="~/Scripts/BootStrapIndex.js"></script>
+    <script src="~/Scripts/IndexLoad.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="~/Scripts/common/html5shiv.min.js"></script>
+        <script src="~/Scripts/common/respond.js"></script>
+    <![endif]-->
+
+</head>
+
+    <body>
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    @{ 
+                        var list = (List<SideBarModel>)ViewBag.SideBarList;
+                        var SideBarGroupNameList = (from row in list
+                            select new
+                            {
+                                row.SideBarGroupName,
+                                row.SideBarGroupIcon,
+                               SideBarItemActive= row.SideBarGroupActive?"active":""
+                            }).Distinct();
+
+                        foreach (var sideBarGroupNameList in SideBarGroupNameList)
+                        {
+                            <a class="blog-nav-item @sideBarGroupNameList.SideBarItemActive  ">
+                                <span class="@sideBarGroupNameList.SideBarGroupIcon"></span>
+                                @sideBarGroupNameList.SideBarGroupName
+                            </a>
+
+                            var itemNameList = from l in list
+                                .Where(x => x.SideBarGroupName == sideBarGroupNameList.SideBarGroupName)
+                                .ToList()
+                                select new
+                                {
+                                    l.SideBarItemIcon,
+                                    l.SideBarItemName,
+                                    l.Controller,
+                                    l.Action,
+                                    l.Parameters
+                                };
+                            @*foreach (var itemName in itemNameList)
+                            {
+                                <a class="list-group-item" href="/@itemName.Controller/@itemName.Action/@itemName.Parameters">
+                                    <span class="@itemName.SideBarItemIcon"></span>
+                                    @itemName.SideBarItemName
+                                </a>
+                            }
+                            <a class="divider"></a>*@
+                        }
+                    }
+                </nav>
+            </div>
+        </div>
+        <div class="container"> 
+            <div class="row">
+
+                <div class="col-sm-10 blog-main">
+                    @RenderBody()
+                </div>
+            </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+               
+</body>
+</html>
